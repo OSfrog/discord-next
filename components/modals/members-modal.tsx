@@ -49,8 +49,12 @@ export const MembersModal = () => {
   const { isOpen, onClose, type, data, onOpen } = useModal();
   const [loadingId, setLoadingId] = useState("");
 
-  const isModalOpen = isOpen && type === "members";
   const { server } = data as { server: ServerWithMembersWithProfiles };
+
+  const isModalOpen = isOpen && type === "members";
+  const members = server?.members?.length < 2
+    ? `${server?.members?.length} Member`
+    : `${server?.members?.length} Members`;
 
   const onKick = async (memberId: string) => {
     try {
@@ -102,7 +106,7 @@ export const MembersModal = () => {
           <DialogDescription className="
           text-center text-zinc-500
           ">
-            {server?.members?.length} Members
+            {members}
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
