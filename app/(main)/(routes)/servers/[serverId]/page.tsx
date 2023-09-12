@@ -41,7 +41,7 @@ const ServerIdPage: React.FC<ServerIdPageProps> = async (
 
   const initialChannel = server?.channels[0];
 
-  if (initialChannel?.name !== "General") {
+  if (initialChannel?.name.toLowerCase() !== "general") {
     return null;
   }
 
